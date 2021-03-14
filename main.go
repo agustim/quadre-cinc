@@ -6,6 +6,7 @@ import (
 )
 
 const TrobarTotesLesSolucions = false
+const TrobarUnCiclic = true
 const IterationLog = 1000000
 
 func main() {
@@ -35,11 +36,14 @@ func main() {
 			}
 			bons = append(bons, *q)
 			solucionat = true
-			if !TrobarTotesLesSolucions {
-				sortirBucle = true
-			}
 			if q.Ciclic() {
 				ciclics = append(ciclics, *q)
+				if !TrobarTotesLesSolucions {
+					sortirBucle = true
+				}
+			}
+			if !TrobarTotesLesSolucions && !TrobarUnCiclic {
+				sortirBucle = true
 			}
 		}
 		if MaxValue < q.lastNum {
