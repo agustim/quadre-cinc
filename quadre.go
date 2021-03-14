@@ -4,8 +4,8 @@ import (
 	"fmt"
 )
 
-const Height = 9
-const Width = 9
+const Height = 5
+const Width = 5
 
 type Quadre struct {
 	lastNum int
