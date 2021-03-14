@@ -2,25 +2,32 @@ package main
 
 import "fmt"
 
+const TrobarTotesLesSolucions = true
+
 func main() {
 
 	var pendents, bons []Quadre
-	var solucionat bool
+	var solucionat, sortirBucle bool
 
 	solucionat = false
+	sortirBucle = false
 	q := Init()
 	q.First()
 
 	pendents = append(pendents, *q)
 
-	for i := 0; len(pendents) != 0; i++ {
-		//agafem el primer
-		q = &pendents[0]
+	for i := 0; len(pendents) != 0 && !sortirBucle; i++ {
+		//agafem l'últim q així tindirem a avançar i tenir els grups de pendents més controlats
+		var lpendents = len(pendents) - 1
+		q = &pendents[lpendents]
 		if q.Final() {
 			bons = append(bons, *q)
 			solucionat = true
+			if !TrobarTotesLesSolucions {
+				sortirBucle = true
+			}
 		}
-		pendents = pendents[1:]
+		pendents = pendents[:lpendents]
 		pendents = append(pendents, q.NextStep()...)
 		fmt.Printf("Pendents: %d - Iteracions: %d - Solucionat: %t\n", len(pendents), i, solucionat)
 	}
