@@ -29,7 +29,7 @@ func main() {
 		}
 		pendents = pendents[:lpendents]
 		pendents = append(pendents, q.NextStep()...)
-		fmt.Printf("Pendents: %d - Iteracions: %d - Solucionat: %t\n", len(pendents), i, solucionat)
+		fmt.Printf("MVActual: %d Pendents: %d - Iteracions: %d - Solucionat: %t\n", q.lastNum, len(pendents), i, solucionat)
 	}
 	for _, q := range bons {
 		q.Draw()
